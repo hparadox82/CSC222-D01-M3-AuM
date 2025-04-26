@@ -10,9 +10,9 @@ const std::vector <std::string> moNAMES = { "January", "February", "March", "Apr
 using namespace std;
 
 //date values set
-/*date::date(int d, int m, int y)
+date::date(int d, int m, int y)
 {	//checks for input validity
-	if (isvaliDD(day, month, year)) //checks with isvaliDD + sets
+	if (isvaliDD(d, m, y)) //checks with isvaliDD + sets
 	{
 		day = d;
 		month = m;
@@ -30,7 +30,7 @@ using namespace std;
 //input validation
 bool date::isvaliDD(int d, int m, int y) const
 {	//checking for date ranges, if invalid enforces default date
-	if (m < 1 || m>12 || d < 1 || y < 1)
+	if (m < 1 || m>12 || d < 1 || d > 31 || y < 1900)
 	{
 		return false;
 	}
@@ -75,7 +75,7 @@ bool date::isLeap()const
 {
 	if (m == 2)
 	{
-		return isLeap(year) ? 29 : 28;
+		return isLeap(y) ? 29 : 28;
 	}
 	else if (m == 4 || m == 6 || m == 9 || m == 11)
 	{
@@ -89,13 +89,13 @@ bool date::isLeap()const
 
 
 
-	/*std::string date::printD1() const
+	std::string date::printD1() const
 	{
 		ostringstream oss;
 		oss << month << "/" << day << "/" << year;
 		return oss.str();
 	}
-	/*std::string date::printD2() const
+	std::string date::printD2() const
 	{
 		ostringstream oss;
 		if (month >= 1 && month <= 12)
@@ -117,8 +117,8 @@ bool date::isLeap()const
 		}
 		else
 		{
-			oss << day << " " << "INvalid Month " << year;
+			oss << day << " " << "Invalid Month " << year;
 		}
 		return oss.str();
 	}
-	*/
+	

@@ -11,6 +11,7 @@ int main()
     cout << "Enter a month (1-12): " << endl;
     cin >> month;
     cout << "Enter a year (cannot be before 1900): " << endl;
+    cin >> year;
 
     date userDate(day, month, year);
 
