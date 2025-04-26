@@ -1,20 +1,24 @@
 // CSC222-D01-M3-AuM.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+//main func
 #include <iostream>
-
+#include "date.h"
+using namespace std;
 int main()
 {
-    
+    int day, month, year;
+    cout << "Enter a day (cannot be less than 1 or over 31): " << endl;
+    cin >> day;
+    cout << "Enter a month (1-12): " << endl;
+    cin >> month;
+    cout << "Enter a year (cannot be before 1900): " << endl;
+
+    date userDate(day, month, year);
+
+    cout << "\nDate entered: " << endl;
+    cout << "Date 1: " << userDate.printD1() << endl;
+    cout << "Date 2: " << userDate.printD2() << endl;
+    cout << "Date 3: " << userDate.printD3() << endl;
+
+    return 0;
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
