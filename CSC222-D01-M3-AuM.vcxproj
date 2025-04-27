@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="CSC222-D01-M3-AuM.cpp" />
     <ClCompile Include="date.cpp" />
+    <ClCompile Include="numbers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="date.h" />
+    <ClInclude Include="NumberArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
