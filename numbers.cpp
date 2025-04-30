@@ -3,10 +3,10 @@
 #include <iomanip>
 #include <new>
 
-using namespace std;
-
-//Static init
+//Static init:
 const double NumberArray::DEFAULT_VALUE = 10000.0;
+
+using namespace std;
 
 //Validates size of array
 bool NumberArray::isValid(int sizeCheck) const
@@ -19,6 +19,7 @@ NumberArray::NumberArray(int size)
 {
 	arraySize = size;
 	aPtr = nullptr;
+	arraySize = 0;
 	if (!isValid(arraySize))
 	{
 		cerr << "Wrong array size. " << size << " must be between " << MIN_SIZE << " and " << MAX_SIZE << " inclusive. Can't create array." << endl;
@@ -26,6 +27,7 @@ NumberArray::NumberArray(int size)
 		aPtr = nullptr;
 		return;
 	}
+	arraySize = size;
 	//if valid, allocate memory:
 	aPtr = new(nothrow) double[arraySize];
 	if (aPtr == nullptr) //check allocation
@@ -36,8 +38,9 @@ NumberArray::NumberArray(int size)
 	}
 	for (int i = 0; i < arraySize; ++i)
 	{
-		aPtr[i] = 0.0;
+		aPtr[i] = (i + 1) * 1;
 	}
+	cout << "Created array object with size " << arraySize << "." << endl;
 }
 //Copy:
 NumberArray::NumberArray(const NumberArray& obj)

@@ -12,16 +12,15 @@ private:
 	int arraySize;
 	bool isValid(int sizeCheck) const;
 public:
+	
 	//default size if none specified
-	static const int DEFAULT_SIZE, MIN_SIZE = 10;
-	static const int MAX_SIZE = 20;
-
-	//default to return from getNumber if index invalid
+	static const int MIN_SIZE = 1;
+	static const int MAX_SIZE = 20; 
+	
 	static const double DEFAULT_VALUE;
 
 	//Constructor:
-	NumberArray(int size = DEFAULT_SIZE);
-	//Copy:
+	NumberArray(int size = MIN_SIZE);
 	NumberArray(const NumberArray &obj);
 
 	//Destructor:
