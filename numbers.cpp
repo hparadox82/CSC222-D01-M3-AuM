@@ -17,25 +17,26 @@ bool NumberArray::isValid(int sizeCheck) const
 //Constructor:
 NumberArray::NumberArray(int size)
 {
-	arraySize = size;
 	aPtr = nullptr;
 	arraySize = 0;
-	if (!isValid(arraySize))
+	if (!isValid(size)) //calling isValid to check if the size array fits within parameters
 	{
 		cerr << "Wrong array size. " << size << " must be between " << MIN_SIZE << " and " << MAX_SIZE << " inclusive. Can't create array." << endl;
 		arraySize = 0;
-		aPtr = nullptr;
+		aPtr = nullptr; //setting to invalid state/clearing.
+
 		return;
 	}
 	arraySize = size;
 	//if valid, allocate memory:
 	aPtr = new(nothrow) double[arraySize];
-	if (aPtr == nullptr) //check allocation
+	if (aPtr == nullptr) //check allocation, if no:
 	{
 		cerr << "Memory allocation failed. Can't create the array." << endl;
 		arraySize = 0;
 		return;
 	}
+	//if yes, fill array of requested size
 	for (int i = 0; i < arraySize; ++i)
 	{
 		aPtr[i] = (i + 1) * 1;
@@ -49,7 +50,7 @@ NumberArray::NumberArray(const NumberArray& obj)
 	aPtr = nullptr;
 	if (arraySize > 0)
 	{
-		aPtr = new(nothrow) double[arraySize];
+		aPtr = new(nothrow) double[arraySize]; //check for allocate
 		if (aPtr == nullptr)
 		{
 			cerr << "Memory allocation failed. Can't copy the array." << endl;

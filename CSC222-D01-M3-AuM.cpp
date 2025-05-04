@@ -11,7 +11,7 @@ using namespace std;
 int main()
  { 
     srand(static_cast<unsigned int>(time(0)));
-    /*
+    
     //DATE FORMATTER:
     int day, month, year;
     cout << "Enter a day (cannot be less than 1 or over 31): " << endl;
@@ -28,7 +28,6 @@ int main()
     cout << "Date 2: " << userDate.printD2() << endl;
     cout << "Date 3: " << userDate.printD3() << endl;
 
-    return 0;*/
 
     //NUMBER ARRAY:
     cout << fixed << setprecision(1);
@@ -60,7 +59,7 @@ int main()
     cout << "Lowest value: " << invalidSArray.getLowest() << endl;
     cout << "Highest value: " << invalidSArray.getHighest() << endl;
     cout << "Average: " << invalidSArray.getAverage() << endl;
-    cout << "Getting a number at index 3: " << array2.getNumber(3) << endl;
+    cout << "Getting a number at index 3: " << invalidSArray.getNumber(3) << endl;
     cout << endl;
 
     
@@ -94,4 +93,6 @@ int main()
     {
         cout << "Skipping random index display due to array being empty." << endl;
     }
+
+    return 0;
 }
