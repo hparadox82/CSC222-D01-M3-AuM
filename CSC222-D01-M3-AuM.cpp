@@ -1,9 +1,6 @@
 // CSC222-D01-M3-AuM.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //main func
 #include <iostream>
-#include <iomanip>
-#include <random>
-#include <ctime>
 #include "date.h"
 
 using namespace std;
