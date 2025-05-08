@@ -1,5 +1,4 @@
-// CSC222-D01-M3-AuM.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//main func
+
 #include <iostream>
 #include <iomanip>
 #include <random>
@@ -75,6 +74,8 @@ int main()
     {
         cout << "Skipping random index display due to array being empty." << endl;
     }
+
+    array1,array2,invalidSArray,customArray.~NumberArray();
 
     return 0;
 }
