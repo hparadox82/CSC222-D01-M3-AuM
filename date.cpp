@@ -121,4 +121,164 @@ bool date::isLeap()const
 		}
 		return oss.str();
 	}
+	//helper for date calc (operators):
+	//single int converter (days since default date, default date day = 0)
+	int date::toDayNum() const
+	{
+		int totalDays = 0;
+
+		for (int y = 1900; y < year; ++y)
+		{
+			totalDays += isLeap(y) ? 366 : 365;
+		}
+		for (int m = 1; m < month; ++m)
+		{
+			totalDays += lastD(m, year);
+		}
+		totalDays += (day - 1);
+		return totalDays;
+	}
+	void date::fromDayNum(int totalDays)
+	{
+		//days for years
+		year = 1900;
+		while (true)
+		{
+			int daysCurrentYr = isLeap(year) ? 366 : 365;
+			if (totalDays >= daysCurrentYr)
+			{
+				totalDays -= daysCurrentYr;
+				year++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		month = 1;
+		//days for months
+		while (true)
+		{
+			int daysCurrentMo = lastD(month, year);
+			if (totalDays >= daysCurrentMo)
+			{
+				totalDays -= daysCurrentMo;
+				month++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		//days
+		day = totalDays + 1;
+
+		//final check
+		if (!isValiDD(day, month, year))
+		{
+			this->day = 1; this->month = 1; this->year = 1900;
+		}
+	}
+
+	//overloads:
+
+	//prefix incr:
+	date& date::operator++()
+	{
+		int dayNum = toDayNum();
+		dayNum++;
+		fromDayNum(dayNum);
+		return*this;
+	}
+
+	//postfix incr:
+	date date::operator++(int)
+	{
+		date temp = *this; //copy
+		++(*this); //call prefix
+		return temp; //return
+	}
+
+	//prefix decr:
+	date& date::operator--()
+	{
+		int dayNum = toDayNum{}; //prevents going back before default date
+		if (dayNum > 0)
+		{
+			dayNum--;
+			fromDayNum(dayNum);
+		}
+		else
+		{
+			fromDayNum(0); //will reset or stay at default if dayNum is <= 0.
+		}
+		return *this;
+	}
+
+	//postfix decr:
+	date date::operator--(int)
+	{
+		date temp = *this;
+		--(*this);
+		return temp;
+	}
+
+	//subtract:
+	int date::operator-(const date& other) const
+	{
+		return this->toDayNum() - other.toDayNum();
+	}
+
+	//fren functions :D
+	ostream& operator<<(ostream& os, const date& dt)
+	{
+		if (dt.getMo() >= 1 && dt.getMo() <= 12)
+		{
+			os << moNames[dt.getMo() - 1] << " " << dt.getD() << ", " << dt.getYr();
+		}
+		else
+		{
+			os << "Invalid date object.";
+		}
+		return os;
+	}
+	istream& operator>>(istream& is, date& dt)
+	{
+		int d, m, y;
+		char sep1 = ' ', sep2 = ' '; //spacing
+
+		is >> m;
+
+		if (is.peek() == '/' || is.peek() == '-' || is.peak() == '.')
+		{
+			is >> sep1 >> d;
+			if (is.peek() == '/' || is.peek() == '-' || is.peak() == '.')
+			{
+				is >> sep2 >> y;
+			}
+			else
+			{
+				is >> d >> y;
+			}
+		}
+		if (is)
+		{
+			if (dt.isvaliDD(d, m, y))
+			{
+				dt.setDate(d, m, y);
+			}
+			else
+			{
+				dt.setDate(1, 1, 1900);
+				is.setstate(failbit);
+			}
+		
+		}
+		else
+		{
+			dt.setDate(1, 1, 1900);
+		}
+		return is;
+	}
+
 	
